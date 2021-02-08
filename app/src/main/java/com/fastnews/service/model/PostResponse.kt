@@ -9,16 +9,18 @@ data class PostDataChild(val children: List<PostChildren>)
 
 data class PostChildren(val data: PostData)
 
-data class PostData(val id: String,
-                    val author: String = "",
-                    val thumbnail: String = "",
-                    val name: String = "",
-                    val num_comments: Int,
-                    val score: Int,
-                    val title: String = "",
-                    val created_utc: Long,
-                    val url: String,
-                    val preview: Preview) : Parcelable {
+data class PostData(
+    val id: String,
+    val author: String = "",
+    val thumbnail: String = "",
+    val name: String = "",
+    val num_comments: Int,
+    val score: Int,
+    val title: String = "",
+    val created_utc: Long,
+    val url: String,
+    val preview: Preview
+) : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),

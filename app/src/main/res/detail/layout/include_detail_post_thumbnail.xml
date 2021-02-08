@@ -4,11 +4,11 @@
     android:id="@+id/item_detail_post_thumbnail"
     android:transitionName="thumbnail"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="150dp"
     android:layout_marginTop="16dp"
-    android:scaleType="centerCrop"
+    android:scaleType="fitCenter"
     android:src="@drawable/ic_placeholder"
-    android:visibility="gone"
+    android:visibility="visible"
     tools:showIn="@layout/include_detail_post_header" />
 
         
