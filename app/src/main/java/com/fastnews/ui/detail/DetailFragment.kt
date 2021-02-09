@@ -22,7 +22,6 @@ import com.fastnews.ui.web.CustomTabsWeb
 import com.fastnews.viewmodel.CommentViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_detail_post.*
-import kotlinx.android.synthetic.main.fragment_timeline.*
 import kotlinx.android.synthetic.main.include_detail_post_thumbnail.*
 import kotlinx.android.synthetic.main.include_detail_post_title.*
 import kotlinx.android.synthetic.main.include_item_timeline_ic_score.*
@@ -40,7 +39,11 @@ class DetailFragment : Fragment() {
         ViewModelProviders.of(this).get(CommentViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         this.arguments.let {
             post = it?.getParcelable(KEY_POST)
         }
@@ -49,7 +52,8 @@ class DetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -94,15 +98,16 @@ class DetailFragment : Fragment() {
     }
 
     private fun fetchComments() {
-            post.let {
-                commentViewModel.getComments(postId = post!!.id).observe(this, Observer<List<CommentData>> { comments ->
+        post.let {
+            commentViewModel.getComments(postId = post!!.id)
+                .observe(this, Observer<List<CommentData>> { comments ->
                     comments.let {
                         populateComments(comments)
                         hideStateProgress()
                         showComments()
                     }
                 })
-            }
+        }
     }
 
     private fun populateComments(comments: List<CommentData>) {
@@ -187,13 +192,17 @@ class DetailFragment : Fragment() {
 
     private fun buildOnClickDetailThumbnail() {
         item_detail_post_thumbnail.setOnClickListener {
-            if(!post?.url.isNullOrEmpty()) {
+            if (!post?.url.isNullOrEmpty()) {
                 context.let {
                     val customTabsWeb = CustomTabsWeb(context!!, post?.url!!)
                     customTabsWeb.openUrlWithCustomTabs()
                 }
             } else {
-                Snackbar.make(item_detail_post_thumbnail, R.string.error_detail_post_url, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(
+                    item_detail_post_thumbnail,
+                    R.string.error_detail_post_url,
+                    Snackbar.LENGTH_SHORT
+                ).show();
             }
         }
     }

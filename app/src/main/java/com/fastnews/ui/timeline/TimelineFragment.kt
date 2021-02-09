@@ -19,7 +19,6 @@ import com.fastnews.service.model.PostData
 import com.fastnews.ui.detail.DetailFragment.Companion.KEY_POST
 import com.fastnews.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.fragment_timeline.*
-import kotlinx.android.synthetic.main.include_state_without_conn_timeline.*
 
 
 class TimelineFragment : Fragment() {
@@ -67,7 +66,8 @@ class TimelineFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(false) // disable the button
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false) // remove the left caret
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(false)
-        (activity as AppCompatActivity).supportActionBar?.title = resources.getString(R.string.app_name)
+        (activity as AppCompatActivity).supportActionBar?.title =
+            resources.getString(R.string.app_name)
     }
 
     private fun buildTimeline() {

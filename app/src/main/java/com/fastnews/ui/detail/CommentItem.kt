@@ -11,7 +11,8 @@ import kotlinx.android.synthetic.main.item_detail_post_comment.view.*
 
 class CommentItem(val activity: Activity, private val postComment: CommentData) {
 
-    private var row: View = LayoutInflater.from(activity).inflate(R.layout.item_detail_post_comment, null, false)
+    private var row: View =
+        LayoutInflater.from(activity).inflate(R.layout.item_detail_post_comment, null, false)
 
     private var isVisible: Boolean = false
 
@@ -35,39 +36,41 @@ class CommentItem(val activity: Activity, private val postComment: CommentData) 
         row.setOnClickListener {
             isVisible = !isVisible
             if (isVisible) {
-                row.item_comment_container.animate().alpha(0.0f).setDuration(500).setListener(object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animator: Animator) {}
+                row.item_comment_container.animate().alpha(0.0f).setDuration(500)
+                    .setListener(object : Animator.AnimatorListener {
+                        override fun onAnimationStart(animator: Animator) {}
 
-                    override fun onAnimationEnd(animator: Animator) {
-                        row.item_comment_container.visibility = View.GONE
-                        row.ic_comments.setImageDrawable(activity.getDrawable(R.drawable.ic_comments_down))
-                    }
+                        override fun onAnimationEnd(animator: Animator) {
+                            row.item_comment_container.visibility = View.GONE
+                            row.ic_comments.setImageDrawable(activity.getDrawable(R.drawable.ic_comments_down))
+                        }
 
-                    override fun onAnimationCancel(animator: Animator) {
+                        override fun onAnimationCancel(animator: Animator) {
 
-                    }
+                        }
 
-                    override fun onAnimationRepeat(animator: Animator) {
+                        override fun onAnimationRepeat(animator: Animator) {
 
-                    }
-                })
+                        }
+                    })
             } else {
-                row.item_comment_container.animate().alpha(1.0f).setDuration(500).setListener(object : Animator.AnimatorListener {
-                    override fun onAnimationStart(animator: Animator) {}
+                row.item_comment_container.animate().alpha(1.0f).setDuration(500)
+                    .setListener(object : Animator.AnimatorListener {
+                        override fun onAnimationStart(animator: Animator) {}
 
-                    override fun onAnimationEnd(animator: Animator) {
-                        row.item_comment_container.visibility = View.VISIBLE
-                        row.ic_comments.setImageDrawable(activity.getDrawable(R.drawable.ic_comments_up))
-                    }
+                        override fun onAnimationEnd(animator: Animator) {
+                            row.item_comment_container.visibility = View.VISIBLE
+                            row.ic_comments.setImageDrawable(activity.getDrawable(R.drawable.ic_comments_up))
+                        }
 
-                    override fun onAnimationCancel(animator: Animator) {
+                        override fun onAnimationCancel(animator: Animator) {
 
-                    }
+                        }
 
-                    override fun onAnimationRepeat(animator: Animator) {
+                        override fun onAnimationRepeat(animator: Animator) {
 
-                    }
-                })
+                        }
+                    })
             }
         }
     }

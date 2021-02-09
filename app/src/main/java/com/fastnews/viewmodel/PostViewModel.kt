@@ -15,15 +15,15 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     @UiThread
     fun getPosts(after: String, limit: Int): LiveData<List<PostData>> {
-            if (!::posts.isInitialized) {
-                posts = MutableLiveData()
+        if (!::posts.isInitialized) {
+            posts = MutableLiveData()
 
-                Coroutines.ioThenMain({
-                    PostRepository.getPosts(after, limit)
-                }) {
-                    posts.postValue(it)
-                }
+            Coroutines.ioThenMain({
+                PostRepository.getPosts(after, limit)
+            }) {
+                posts.postValue(it)
             }
+        }
         return posts
     }
 
