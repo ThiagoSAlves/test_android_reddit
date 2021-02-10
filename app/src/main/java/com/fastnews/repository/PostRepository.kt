@@ -6,7 +6,6 @@ import com.fastnews.service.model.PostData
 object PostRepository : BaseRepository() {
 
     suspend fun getPosts(after: String, limit: Int): List<PostData> {
-
         val postResponse = safeApiCall(
             call = { RedditAPI.redditService.getPostList(after, limit).await() },
             errorMessage = "Error to fetching posts"
@@ -16,6 +15,5 @@ object PostRepository : BaseRepository() {
         postResponse?.data?.children?.map { postChildren -> result.add(postChildren.data) }
 
         return result
-
     }
 }

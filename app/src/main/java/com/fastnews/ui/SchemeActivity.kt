@@ -3,6 +3,7 @@ package com.fastnews.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 
 class SchemeActivity : AppCompatActivity() {
 
@@ -10,5 +11,10 @@ class SchemeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         startActivity(Intent(this, ParentActivity::class.java))
         finish()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        Glide.get(this).clearMemory()
     }
 }

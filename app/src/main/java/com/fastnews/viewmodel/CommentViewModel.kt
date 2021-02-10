@@ -14,15 +14,14 @@ class CommentViewModel : ViewModel() {
 
     @UiThread
     fun getComments(postId: String): LiveData<List<CommentData>> {
-        if (!::comments.isInitialized) {
-            comments = MutableLiveData()
+        comments = MutableLiveData()
 
-            Coroutines.ioThenMain({
-                CommentRepository.getComments(postId)
-            }) {
-                comments.postValue(it)
-            }
+        Coroutines.ioThenMain({
+            CommentRepository.getComments(postId)
+        }) {
+            comments.postValue(it.orEmpty() as MutableList<CommentData>?)
         }
+
         return comments
     }
 
